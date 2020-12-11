@@ -1,5 +1,6 @@
 package br.com.zup.transacao.events;
 
+import br.com.zup.transacao.model.Store;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,4 +18,7 @@ public class StoreEvent {
     @JsonProperty(value = "endereco")
     private String address;
 
+    public Store toModel() {
+        return new Store(name, city, address);
+    }
 }

@@ -1,5 +1,8 @@
 package br.com.zup.transacao.events;
 
+import br.com.zup.transacao.model.Card;
+import br.com.zup.transacao.model.Store;
+import br.com.zup.transacao.model.Transaction;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,4 +27,11 @@ public class TransactionEvent {
 
     @JsonProperty("efetivadaEm")
     private LocalDateTime madeAt;
+
+    public Transaction toModel() {
+        Store store = storeEvent.toModel();
+        Card card = cardEvent.toModel();
+
+        return new Transaction(value, store, card, madeAt, id);
+    }
 }
