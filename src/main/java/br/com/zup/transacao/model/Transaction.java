@@ -25,11 +25,11 @@ public class Transaction {
 
     @NotNull
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
-    private Store storeEvent;
+    private Store store;
 
     @NotNull
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
-    private Card cardEvent;
+    private Card card;
 
     @NotNull
     @Column(nullable = false)
@@ -46,13 +46,13 @@ public class Transaction {
     protected Transaction() { }
 
     public Transaction(BigDecimal value,
-                       @NotNull Store storeEvent,
-                       @NotNull Card cardEvent,
+                       @NotNull Store store,
+                       @NotNull Card card,
                        @NotNull LocalDateTime madeAt,
                        @NotBlank String referenceId) {
         this.value = value;
-        this.storeEvent = storeEvent;
-        this.cardEvent = cardEvent;
+        this.store = store;
+        this.card = card;
         this.madeAt = madeAt;
         this.referenceId = referenceId;
     }
