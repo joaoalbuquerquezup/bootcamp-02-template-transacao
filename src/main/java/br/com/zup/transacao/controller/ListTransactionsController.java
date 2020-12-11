@@ -29,8 +29,8 @@ public class ListTransactionsController {
         PageRequest page = PageRequest.of(0, 10, sort);
 
         // Atention: This projection based on Spring Data JPA Interfaces always brings the ids of the relationships
-        var allProjectedByCardId = transactionRepository.findAllProjectedByCard_ReferenceId(cardId, page);
+        var transactionProjectedList = transactionRepository.findAllProjectedByCard_ReferenceId(cardId, page);
 
-        return ResponseEntity.ok(allProjectedByCardId);
+        return ResponseEntity.ok(transactionProjectedList);
     }
 }
