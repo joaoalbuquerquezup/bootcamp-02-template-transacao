@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.function.Function;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -28,9 +30,9 @@ public class TransactionEvent {
     @JsonProperty("efetivadaEm")
     private LocalDateTime madeAt;
 
-    public Transaction toModel() {
+    public Transaction toModel(Function<String, Optional<Card>> cardLoader) {
         Store store = storeEvent.toModel();
-        Card card = cardEvent.toModel();
+        Card card = cardEvent.toModel(cardLoader);
 
         return new Transaction(value, store, card, madeAt, id);
     }
