@@ -28,6 +28,7 @@ public class ListTransactionsController {
         Sort sort = Sort.by(Sort.Direction.DESC, "madeAt");
         PageRequest page = PageRequest.of(0, 10, sort);
 
+        // Atention: This projection based on Spring Data JPA Interfaces always brings the ids of the relationships
         var allProjectedByCardId = transactionRepository.findAllProjectedByCard_ReferenceId(cardId, page);
 
         return ResponseEntity.ok(allProjectedByCardId);
